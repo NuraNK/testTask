@@ -113,7 +113,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 AUTH_USER_MODEL = 'user.User'
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
     'base.authentication.PhoneEmailAuthBackend'
 ]
 SIMPLE_JWT = {

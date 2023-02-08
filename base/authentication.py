@@ -1,8 +1,12 @@
 # from django.contrib.auth.models import User
+from django.contrib.auth.backends import ModelBackend
+
 from user.models import User
 
-class PhoneEmailAuthBackend:
-    def authenticate(self, request, username=None, password=None):
+class PhoneEmailAuthBackend(ModelBackend):
+
+    def authenticate(self, request, username=None, password=None, **kwargs):
+        username = kwargs.get('email', None)
         try:
             if "@" in username:
                 user = User.objects.get(email=username)
