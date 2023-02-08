@@ -66,7 +66,7 @@ login = Login.as_view()
 class SendLinkResetPassword(APIView):
 
     def post(self, request, *args, **kwargs):
-        host = "".format(request.get_host())
+        host = "http://{}/api/user/".format(request.get_host())
         login = str(self.request.data.get('login')).lower()
         if "@" in login:
             user = User.objects.filter(email=login).first()
