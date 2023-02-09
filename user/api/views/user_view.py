@@ -142,3 +142,5 @@ class ForgotPasswordView(APIView):
 
 
 forgot_password = ForgotPasswordView.as_view()
+
+

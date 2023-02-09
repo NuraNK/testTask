@@ -1,0 +1,23 @@
+version: "3"
+services:
+  uchet:
+    container_name: uchet
+    build: .
+    image: uchet
+    restart: always
+    volumes:
+      - static_volume:/testTask/static
+    env_file:
+      - .env
+    ports:
+      - 5000:5000
+  celery:
+    build:
+      context: ./
+    env_file:
+      - ./.env
+    command: celery --app testTask.celery.app worker -l info
+    depends_on:
+      - uchet
+volumes:
+  static_volume:
